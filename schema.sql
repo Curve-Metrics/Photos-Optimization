@@ -31,5 +31,5 @@ CREATE TABLE favorites (
 )
 
 CREATE TABLE images (
-
+  imageUrl,
 )
