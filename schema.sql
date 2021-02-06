@@ -35,3 +35,5 @@ CREATE TABLE images (
   listing_id int REFRENCES listings (id),
   img text
 );
+
+
