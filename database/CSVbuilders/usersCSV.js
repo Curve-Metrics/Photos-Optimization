@@ -5,7 +5,7 @@ const writeUsers = fs.createWriteStream('users.csv');
 writeUsers.write('username,pword,first_name,last_name,email\n', 'utf8');
 
 const writeTenMillionUsers = (writer, encoding, callback) => {
-  let i = 10000000;
+  let i = 10;
 
   const write = () => {
     let ok = true;
@@ -17,7 +17,7 @@ const writeTenMillionUsers = (writer, encoding, callback) => {
       }
 
       const username = faker.internet.userName();
-      const pword = faker.lorem.words();
+      const pword = faker.lorem.word();
       const firstName = faker.name.firstName();
       const lastName = faker.name.lastName();
       const email = faker.internet.email();

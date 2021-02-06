@@ -31,10 +31,10 @@ const generateRandomLengthPhotoArray = (num) => {
 }
 
 const writeListings = fs.createWriteStream('listings.csv');
-writeListings.write('tags,price,line1,line2,numBeds,numBaths,sqft,images,views\n', 'utf8');
+writeListings.write('tags,price,line1,line2,numBeds,numBaths,sqft,views,images\n', 'utf8');
 
 const writeTenMillionListings = (writer, encoding, callback) => {
-  let i = 10000000;
+  let i = 10;
 
   const write = () => {
     let ok = true;
@@ -52,10 +52,11 @@ const writeTenMillionListings = (writer, encoding, callback) => {
       const numBeds = getRandomInt(2, 8);
       const numBaths = getRandomInt(2, 8);
       const sqft = getRandomInt(4000, 10000);
-      const images = generateRandomLengthPhotoArray(i);
       const views = getRandomInt(0, 10000);
+      const images = generateRandomLengthPhotoArray(i);
 
-      const data = `${tags},${price},${line1},${line2},${numBeds},${numBaths},${sqft},${images},${views}\n`;
+
+      const data = `${tags},${price},${line1},${line2},${numBeds},${numBaths},${sqft},${views},${images}\n`;
 
       if (i === 0) {
         writer.write(data, encoding, callback);

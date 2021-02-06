@@ -1,11 +1,19 @@
 const fs = require('fs');
-const db = require('../index.js');
+const faker = require('faker');
 
 const writeFavorites = fs.createWriteStream('favorites.csv');
 writeFavorites.write('user_id,listing_id\n', 'utf8');
 
+const getRandomInt = (min, max) => {
+  return faker.random.number({
+    min,
+    max,
+  });
+}
+
+
 const writeTenMillionFavorites = (writer, encoding, callback) => {
-  let i = 10000000;
+  let i = 10;
 
   const write = async () => {
     let ok = true;
