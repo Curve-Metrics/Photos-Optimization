@@ -17,8 +17,29 @@ const writeTenMillionFavorites = (writer, encoding, callback) => {
         console.log(`${i} records written`);
       }
 
-//  need to pull user ids and listing ids from database to connect favorites
+//  for each user id, generate a random amount between 5 and 20 of random integers between 1 and 10000000 but not including integers already used by that user
+  const alreadyLiked = [];
+  const onlyReturnNewId = () => {
+    const newId = getRandomInt(1, 10000000);
+    if (alreadyLiked.includes(newId)) {
+      return onlyReturnNewId()
+   }
+    alreadyLiked.push(newId);
+    return newId
+  }
 
+
+for (let j = 0; j < (getRandomInt(5, 20)); j++) {
+  const listing_id = onlyReturnNewId();
+  const data = `${i + 1},${listing_id},\n`;
+  if (i === 0) {
+    writer.write(data, encoding, callback);
+  } else {
+    // see if we should continue, or wait
+    // don't pass the callback, because we're not done yet.
+    ok = writer.write(data, encoding);
+  }
+}
     }
 
     if (i > 0) {

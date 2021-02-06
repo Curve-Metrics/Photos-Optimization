@@ -8,9 +8,6 @@ const getRandomInt = (min, max) => {
     });
 }
 
-const possibleTags = ['For Sale', 'For Rent', 'New', 'New Construction', 'Off Market'];
-const tagIndex = getRandomInt(0, possibleTags.length);
-
 const getImageUrls = (num) => {
   // Set houseNum to num % number of house images available
   let houseNum = num % 21;
@@ -21,14 +18,6 @@ const getImageUrls = (num) => {
 
   return house;
 };
-
-const generateRandomLengthPhotoArray = (num) => {
-  let photoArray = [];
-  for (let i = 0; i < (getRandomInt(15, 45)); i++) {
-    photoArray.push(getImageUrls(num));
-  }
-  return photoArray;
-}
 
 const writeImages = fs.createWriteStream('images.csv');
 writeImages.write('listing_id,image\n', 'utf8');
@@ -41,23 +30,22 @@ const writeTenMillionImages = (writer, encoding, callback) => {
 
     while (i > 0 && ok) {
       i -= 1;
+
       if (i % 200000 === 0) {
         console.log(`${i} records written`);
       }
 
-
       // need to give each listing some images
-
-      const img = getImageUrls(i);
-
-      const data = `${listing_id},${image},\n`;
-
-      if (i === 0) {
-        writer.write(data, encoding, callback);
-      } else {
-        // see if we should continue, or wait
-        // don't pass the callback, because we're not done yet.
-        ok = writer.write(data, encoding);
+      for (let j = 0; j < (getRandomInt(15, 45)); j++) {
+        const img = getImageUrls(i);
+        const data = `${i + 1},${image},\n`;
+        if (i === 0) {
+          writer.write(data, encoding, callback);
+        } else {
+          // see if we should continue, or wait
+          // don't pass the callback, because we're not done yet.
+          ok = writer.write(data, encoding);
+        }
       }
     }
 
