@@ -4,17 +4,15 @@ CREATE DATABASE real_estate_listings;
 
 CREATE TABLE listings (
   id serial primary key,
-  tags,
-  price,
-  line1,
-  line2,
-  neighborhood,
-  neighborhoodUrl,
-  numBeds,
-  numBaths,
-  sqft,
-  images,
-  views
+  tags text[],
+  price int,
+  line1 varchar(80),
+  line2 varchar(80),
+  numBeds int,
+  numBaths int,
+  sqft int,
+  images text[],
+  views int
 );
 
 CREATE TABLE users (
@@ -27,9 +25,15 @@ CREATE TABLE users (
 );
 
 CREATE TABLE favorites (
-
-)
+  id serial primary key,
+  user_id int REFRENCES users (id),
+  listing_id int REFRENCES listings (id)
+);
 
 CREATE TABLE images (
-  imageUrl,
-)
+  id serial primary key,
+  listing_id int REFRENCES listings (id),
+  img text
+);
+
+
