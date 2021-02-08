@@ -13,16 +13,18 @@ const getRandomInt = (min, max) => {
 
 
 const writeTenMillionFavorites = (writer, encoding, callback) => {
-  let i = 10;
+  let i = 10000000;
+  let round = 0;
 
   const write = async () => {
     let ok = true;
 
     while (i > 0 && ok) {
       i -= 1;
+      round += 1;
 
       if (i % 100000 === 0) {
-        console.log(`${i} records written`);
+        console.log(`${i} records to write`);
       }
 
 //  for each user id, generate a random amount between 5 and 20 of random integers between 1 and 10000000 but not including integers already used by that user
@@ -39,7 +41,7 @@ const writeTenMillionFavorites = (writer, encoding, callback) => {
 
 for (let j = 0; j < (getRandomInt(5, 20)); j++) {
   const listing_id = onlyReturnNewId();
-  const data = `${i + 1},${listing_id},\n`;
+  const data = `${round},${listing_id}\n`;
   if (i === 0) {
     writer.write(data, encoding, callback);
   } else {

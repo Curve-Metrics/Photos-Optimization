@@ -27,14 +27,14 @@ const generateRandomLengthPhotoArray = (num) => {
   for (let i = 0; i < (getRandomInt(15, 45)); i++) {
     photoArray.push(getImageUrls(num));
   }
-  return photoArray;
+  return photoArray.join(' ');
 }
 
 const writeListings = fs.createWriteStream('listings.csv');
 writeListings.write('tags,price,line1,line2,numBeds,numBaths,sqft,views,images\n', 'utf8');
 
 const writeTenMillionListings = (writer, encoding, callback) => {
-  let i = 10;
+  let i = 10000000;
 
   const write = () => {
     let ok = true;
@@ -42,13 +42,13 @@ const writeTenMillionListings = (writer, encoding, callback) => {
     while (i > 0 && ok) {
       i -= 1;
       if (i % 200000 === 0) {
-        console.log(`${i} records written`);
+        console.log(`${i} records to write`);
       }
 
       const tags = [possibleTags[tagIndex]];
       const price = getRandomInt(100, 300) * 100000;
       const line1 = faker.address.streetAddress();
-      const line2 = faker.fake('{{address.city}}, {{address.stateAbbr}}');
+      const line2 = faker.fake('{{address.city}} {{address.stateAbbr}}');
       const numBeds = getRandomInt(2, 8);
       const numBaths = getRandomInt(2, 8);
       const sqft = getRandomInt(4000, 10000);
@@ -56,7 +56,7 @@ const writeTenMillionListings = (writer, encoding, callback) => {
       const images = generateRandomLengthPhotoArray(i);
 
 
-      const data = `${tags},${price},${line1},${line2},${numBeds},${numBaths},${sqft},${views},${images}\n`;
+      const data = `{${tags}},${price},${line1},${line2},${numBeds},${numBaths},${sqft},${views},{${images}}\n`;
 
       if (i === 0) {
         writer.write(data, encoding, callback);

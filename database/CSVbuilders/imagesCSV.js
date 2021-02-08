@@ -23,22 +23,24 @@ const writeImages = fs.createWriteStream('images.csv');
 writeImages.write('listing_id,img\n', 'utf8');
 
 const writeTenMillionImages = (writer, encoding, callback) => {
-  let i = 10;
+  let i = 10000000;
+  let round = 0;
 
   const write = () => {
     let ok = true;
 
     while (i > 0 && ok) {
       i -= 1;
+      round += 1;
 
       if (i % 200000 === 0) {
-        console.log(`${i} records written`);
+        console.log(`${i} records to write`);
       }
 
       // need to give each listing some images
       for (let j = 0; j < (getRandomInt(15, 45)); j++) {
         const img = getImageUrls(i);
-        const data = `${i + 1},${img},\n`;
+        const data = `${round},${img}\n`;
         if (i === 0) {
           writer.write(data, encoding, callback);
         } else {
