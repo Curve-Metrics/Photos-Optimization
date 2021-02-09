@@ -2,7 +2,7 @@ const fs = require('fs');
 const faker = require('faker');
 
 const writeFavorites = fs.createWriteStream('favorites.csv');
-writeFavorites.write('user_id,listing_id\n', 'utf8');
+writeFavorites.write('userid,listing_id\n', 'utf8');
 
 const getRandomInt = (min, max) => {
   return faker.random.number({
@@ -13,7 +13,7 @@ const getRandomInt = (min, max) => {
 
 
 const writeTenMillionFavorites = (writer, encoding, callback) => {
-  let i = 10000000;
+  let i = 1000000;
   let round = 0;
 
   const write = async () => {
@@ -30,7 +30,7 @@ const writeTenMillionFavorites = (writer, encoding, callback) => {
 //  for each user id, generate a random amount between 5 and 20 of random integers between 1 and 10000000 but not including integers already used by that user
   const alreadyLiked = [];
   const onlyReturnNewId = () => {
-    const newId = getRandomInt(1, 10000000);
+    const newId = getRandomInt(1, 1000000);
     if (alreadyLiked.includes(newId)) {
       return onlyReturnNewId()
    }

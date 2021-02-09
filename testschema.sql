@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS real_estate_listings;
+DROP DATABASE IF EXISTS test_real_estate_listings;
 
 DROP TABLE IF EXISTS favorites;
 DROP TABLE IF EXISTS images;
@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS users;
 
 
 
-CREATE DATABASE real_estate_listings;
+CREATE DATABASE test_real_estate_listings;
 
 CREATE TABLE listings (
   id serial primary key,
@@ -45,21 +45,21 @@ CREATE TABLE images (
 
 
 COPY listings(tags, price, line1, line2, numBeds, numBaths, sqft, views, images)
-FROM '/Users/jasonhorn/Coding/HRSF132/SDC/Photos-Optimization/CSVfiles/listings.csv'
+FROM '/Users/jasonhorn/Coding/HRSF132/SDC/Photos-Optimization/testCSVfiles/listings.csv'
 DELIMITER ','
 CSV HEADER;
 
 COPY users(username, pword, first_name, last_name, email)
-FROM '/Users/jasonhorn/Coding/HRSF132/SDC/Photos-Optimization/CSVfiles/users.csv'
+FROM '/Users/jasonhorn/Coding/HRSF132/SDC/Photos-Optimization/testCSVfiles/users.csv'
 DELIMITER ','
 CSV HEADER;
 
 COPY images(listing_id, img)
-FROM '/Users/jasonhorn/Coding/HRSF132/SDC/Photos-Optimization/CSVfiles/images.csv'
+FROM '/Users/jasonhorn/Coding/HRSF132/SDC/Photos-Optimization/testCSVfiles/images.csv'
 DELIMITER ','
 CSV HEADER;
 
 COPY favorites(userid, listing_id)
-FROM '/Users/jasonhorn/Coding/HRSF132/SDC/Photos-Optimization/CSVfiles/favorites.csv'
+FROM '/Users/jasonhorn/Coding/HRSF132/SDC/Photos-Optimization/testCSVfiles/favorites.csv'
 DELIMITER ','
 CSV HEADER;

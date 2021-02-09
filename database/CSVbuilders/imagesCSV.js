@@ -23,7 +23,7 @@ const writeImages = fs.createWriteStream('images.csv');
 writeImages.write('listing_id,img\n', 'utf8');
 
 const writeTenMillionImages = (writer, encoding, callback) => {
-  let i = 10000000;
+  let i = 1000000;
   let round = 0;
 
   const write = () => {
