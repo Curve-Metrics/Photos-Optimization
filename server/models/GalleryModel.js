@@ -6,14 +6,14 @@ const getListing = (listingId, callback) => {
 }
 
 const incrementViews = (listingId, callback) => {
-  const q = ``;
-
+  const q = `UPDATE listings SET views = views + 1 WHERE id = ${listingId}`;
+  db.query(q, callback);
 }
 
 
 const addFavorite = ({listingId, userId}, callback) => {
   const q = `INSERT INTO favorites (listingId, userId) VALUES (${listingId}, ${userId})`;
-  db.query(q, [listingId, userId] ,callback);
+  db.query(q, callback);
 }
 
 const removeFavorite = ({listingId, userId}, callback) => {
