@@ -11,6 +11,17 @@ const getListing = (request, response) => {
   })
 }
 
+const getImages = (request, response) => {
+  const { listingId } = request.params;
+  GalleryModel.getImages(listingId, (err, images) => {
+    if (err) {
+      response.status(400).send(err)
+    } else {
+      response.status(200).send(images)
+    }
+  })
+}
+
 const incrementViews = (request, response) => {
   const { listingId } = request.params;
   GalleryModel.incrementViews(listingId, (err, data) => {
@@ -44,6 +55,7 @@ const removeFavorite = (request, response) => {
 
 module.exports = {
   getListing,
+  getImages,
   incrementViews,
   addFavorite,
   removeFavorite
