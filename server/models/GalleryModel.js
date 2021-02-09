@@ -12,12 +12,13 @@ const incrementViews = (listingId, callback) => {
 
 
 const addFavorite = ({listingId, userId}, callback) => {
-  const q = `INSERT INTO favorites (listingId, userId) VALUES (${listingId}, ${userId})`;
+  const q = `INSERT INTO favorites (userId, listing_id) VALUES (${userId}, ${listingId})`;
   db.query(q, callback);
 }
 
 const removeFavorite = ({listingId, userId}, callback) => {
-
+  const q = `DELETE FROM favorites WHERE userId = ${userId} AND ${listingId} = listing_id`;
+  db.query(q, callback);
 }
 
 module.exports = {
