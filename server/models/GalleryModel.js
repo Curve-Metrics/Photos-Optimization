@@ -10,11 +10,15 @@ const getImages = (listingId, callback) => {
   db.query(q, callback);
 }
 
+const getUserFavorites = (userId, callback) => {
+  const q = `SELECT * FROM favorites WHERE userId = ${userId}`;
+  db.query(q, callback);
+}
+
 const incrementViews = (listingId, callback) => {
   const q = `UPDATE listings SET views = views + 1 WHERE id = ${listingId}`;
   db.query(q, callback);
 }
-
 
 const addFavorite = ({listingId, userId}, callback) => {
   const q = `INSERT INTO favorites (userId, listing_id) VALUES (${userId}, ${listingId})`;
@@ -26,16 +30,11 @@ const removeFavorite = ({listingId, userId}, callback) => {
   db.query(q, callback);
 }
 
-//  get listing and images from images table
-
-// const getListingAndImages = (listingId, callback) => {
-//   const q = `SELECT * FROM listings WHERE id = ${listingId}`;
-//   db.query(q, callback);
-// }
 
 module.exports = {
   getListing,
   getImages,
+  getUserFavorites,
   incrementViews,
   addFavorite,
   removeFavorite

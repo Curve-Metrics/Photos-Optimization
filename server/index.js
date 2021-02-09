@@ -13,6 +13,7 @@ app.use('/:homeId', express.static('public'));
 
 app.get('/api/listings/:listingId/details', GalleryController.getListing);
 app.get('/api/listings/:listingId/images', GalleryController.getImages);
+app.get('/api/listings/:userId/favorites', GalleryController.getUserFavorites);
 app.patch('/api/listings/:listingId/views', GalleryController.incrementViews);
 app.post('/api/listings/:listingId/favorites/:userId', GalleryController.addFavorite);
 app.delete('/api/listings/:listingId/favorites/:userId', GalleryController.removeFavorite)
