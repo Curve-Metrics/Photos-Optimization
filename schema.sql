@@ -43,6 +43,10 @@ CREATE TABLE images (
   img text
 );
 
+CREATE INDEX favorites_userid_index ON favorites (userid);
+CREATE INDEX images_listing_id_index ON images (listing_id);
+
+
 
 COPY listings(tags, price, line1, line2, numBeds, numBaths, sqft, views, images)
 FROM '/Users/jasonhorn/Coding/HRSF132/SDC/Photos-Optimization/CSVfiles/listings.csv'

@@ -1,3 +1,4 @@
+const NewRelic = require('newrelic');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
@@ -26,19 +27,57 @@ class App extends React.Component {
     this.handleSaveClick = this.handleSaveClick.bind(this);
   }
 
+  // componentDidMount() {
+    // const pathway = window.location.pathname.match(/\/(\d+)\//);
+    // const listingId = pathway ? Number(window.location.pathname.match(/\/(\d+)\//)[1]) : '';
+  //   axios.get(`/api/listings/${listingId}`)
+  //     .then(({ data }) => {
+  //       const currentHome = data[Math.floor(Math.random() * data.length)];
+  //       const { saved } = currentHome;
+  //       this.setState(({ currentHome, saved }));
+  //     })
+  //     .catch((err) => {
+  //       console.log('Error getting currentHome on mount: ', err);
+  //     });
+  // }
+
+
+
   componentDidMount() {
-    const pathway = window.location.pathname.match(/\/(\d+)\//);
-    const listingId = pathway ? Number(window.location.pathname.match(/\/(\d+)\//)[1]) : '';
-    axios.get(`/api/photoGallery/${listingId}`)
-      .then(({ data }) => {
-        const currentHome = data[Math.floor(Math.random() * data.length)];
-        const { saved } = currentHome;
-        this.setState(({ currentHome, saved }));
-      })
-      .catch((err) => {
-        console.log('Error getting currentHome on mount: ', err);
-      });
+    this.getListing();
   }
+
+  getListing() {
+    // const pathway = window.location.pathname.match(/\/(\d+)\//);
+    // const listingId = pathway ? Number(window.location.pathname.match(/\/(\d+)\//)[1]) : '';
+    axios.get(`/api/listings/2/details`)
+    .then(({ data }) => {
+      const homeInfo = data.rows[0];
+      const currentHome = {
+        id: homeInfo.id,
+        images: homeInfo.images[0].split(' '),
+        tags: homeInfo.tags,
+        details: {
+          price: homeInfo.price,
+          address: {
+            line1: homeInfo.line1,
+            line2:homeInfo.line2
+          },
+          floorplan: {
+            numBeds: homeInfo.numBeds,
+            numBaths: homeInfo.numBaths,
+            sqft: homeInfo.sqft
+          },
+        }
+      };
+      const { saved } = currentHome;
+      this.setState(({ currentHome, saved }));
+    })
+    .catch((err) => {
+      console.log('Error getting currentHome on mount: ', err);
+    });
+  }
+
 
   handleSaveClick(event) {
     event.preventDefault();
