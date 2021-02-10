@@ -6,30 +6,21 @@ export let errorRate = new Rate('errors');
 
 export let options = {
   stages: [
-    { duration: '2m', target: 100 },
-    { duration: '5m', target: 200 },
-    { duration: '2m', target: 500 },
-    { duration: '5m', target: 500 },
-    { duration: '2m', target: 1000 },
-    { duration: '5m', target: 1000 },
-    { duration: '2m', target: 1500 },
-    { duration: '5m', target: 1000 },
-    { duration: '5m', target: 100 },
+    { duration: '2s', target: 100 },
+    { duration: '5s', target: 200 },
+    { duration: '2s', target: 500 },
+    { duration: '5s', target: 500 },
+    { duration: '2s', target: 1000 },
+    { duration: '5s', target: 1000 },
+    { duration: '2s', target: 1500 },
+    { duration: '5s', target: 1000 },
+    { duration: '5s', target: 100 },
   ],
 };
 
-export default function () {
-  const BASE_URL = 'http://localhost:3002';
-  let responses = http.batch([
-    [
-      'GET',
-      `${BASE_URL}/api/users/77`,
-      null,
-      { tags: { name: 'NotSure' } },
-    ],
-  ]);
-  check(http.get(url, params), {
-    'status is 200': (r) => r.status == 200,
-  }) || errorRate.add(1);
-  sleep(1);
+export default function main() {
+  let response;
+  response = http.get(`http://localhost:3002/api/users/${(Math.floor(Math.random() * 10000000) + 1)}/favorites`);
+  // Automatically added sleep
+  sleep(.1);
 }

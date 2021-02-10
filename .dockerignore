@@ -1,0 +1,10 @@
+node_modules
+package-lock.json
+public/dist/bundle.js
+.eslintrc.js
+CSVfiles
+oldDatabase
+oldServer
+testschema.sql
+jest.config.js
+enzyme.config.js
