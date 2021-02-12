@@ -30,7 +30,7 @@ const writeTenMillionFavorites = (writer, encoding, callback) => {
 //  for each user id, generate a random amount between 5 and 20 of random integers between 1 and 10000000 but not including integers already used by that user
   const alreadyLiked = [];
   const onlyReturnNewId = () => {
-    const newId = getRandomInt(1, 1000000);
+    const newId = getRandomInt(1, 5000000);
     if (alreadyLiked.includes(newId)) {
       return onlyReturnNewId()
    }
