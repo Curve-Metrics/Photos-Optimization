@@ -49,21 +49,21 @@ CREATE INDEX images_listing_id_index ON images (listing_id);
 
 
 COPY listings(tags, price, line1, line2, numBeds, numBaths, sqft, views, images)
-FROM '/Users/jasonhorn/Coding/HRSF132/SDC/Photos-Optimization/CSVfiles/listings.csv'
+FROM '/home/ubuntu/Photos-Optimization/CSVfiles/listings.csv'
 DELIMITER ','
 CSV HEADER;
 
 COPY users(username, pword, first_name, last_name, email)
-FROM '/Users/jasonhorn/Coding/HRSF132/SDC/Photos-Optimization/CSVfiles/users.csv'
+FROM '/home/ubuntu/Photos-Optimization/CSVfiles/users.csv'
 DELIMITER ','
 CSV HEADER;
 
 COPY images(listing_id, img)
-FROM '/Users/jasonhorn/Coding/HRSF132/SDC/Photos-Optimization/CSVfiles/images.csv'
+FROM '/home/ubuntu/Photos-Optimization/CSVfiles/images.csv'
 DELIMITER ','
 CSV HEADER;
 
 COPY favorites(userid, listing_id)
-FROM '/Users/jasonhorn/Coding/HRSF132/SDC/Photos-Optimization/CSVfiles/favorites.csv'
+FROM '/home/ubuntu/Photos-Optimization/CSVfiles/favorites.csv'
 DELIMITER ','
 CSV HEADER;
