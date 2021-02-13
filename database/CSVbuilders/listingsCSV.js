@@ -34,7 +34,7 @@ const writeListings = fs.createWriteStream('listings.csv');
 writeListings.write('tags,price,line1,line2,numBeds,numBaths,sqft,views,images\n', 'utf8');
 
 const writeTenMillionListings = (writer, encoding, callback) => {
-  let i = 10000000;
+  let i = 5000000;
 
   const write = () => {
     let ok = true;

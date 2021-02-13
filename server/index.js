@@ -10,7 +10,7 @@ const port = 3002;
 app.use(cors());
 app.use(express.json());
 app.use('/', express.static('public'));
-app.use('/:homeId', express.static('public'));
+app.use('/api/listing/:homeId', express.static('public'));
 
 app.get('/api/listings/:listingId/details', GalleryController.getListing);
 app.get('/api/listings/:listingId/images', GalleryController.getImages);
