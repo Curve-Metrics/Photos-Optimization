@@ -1,7 +1,10 @@
 # Project Name
 
 > Project description
-
+Back end optimization for Real Estate Listing PhotoGallery application. Monitoring done with new relic. K6 Stress Testing.__
+New Relic Dashboard__
+![alt text](https://github.com/Curve-Metrics/Photos-Optimization/blob/master/sample1.png?raw=true)
+![alt text](https://github.com/Curve-Metrics/Photos-Optimization/blob/master/sample2.png?raw=true)
 ## Related Projects
 
   - https://github.com/teamName/repo
